@@ -1,0 +1,38 @@
+[package]
+org = "ores-wasm-loaders-test"
+name = "owl-conformance"
+version = "0.1.0"
+kind = "e2e"
+language = "typescript"
+description = "ORES Wasm Loaders: the cross-browser conformance run for the loader contract, executed on this test org's Actions minutes against `owl-fixtures`"
+license = "MIT"
+
+[package.repository]
+vcs = "git"
+url = "https://github.com/ores-wasm-loaders-test/owl-conformance"
+
+[dependencies]
+"ores-wasm-loaders/owl-coordinator" = "^0.1.0"
+"ores-wasm-loaders-test/owl-fixtures" = "^0.1.0"
+
+[build]
+command = "node --test test/*.test.mjs"
+
+[publish]
+include_readme = true
+tag_format = "v{version}"
+exclude = [".env", ".env.*", ".vendor/**", ".zed/**", ".zed-pack/**", "tmp/**", "**/*.log", ".DS_Store", "**/target/**", "**/node_modules/**", "**/dist/**"]
+
+[install]
+dir = ".vendor/.zed"
+
+[targets.repository]
+dir = "."
+
+[targets.typescript]
+dir = "."
+name = "owl-conformance"
+adapter = "node"
+
+[scripts]
+test = "node --test test/*.test.mjs"
